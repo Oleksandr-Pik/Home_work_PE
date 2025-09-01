@@ -12,6 +12,9 @@ class Car:
     def __str__(self):
         return f"Бренд атомобіля: {self.brand}, модель: {self.model}, колір: {self.color} - Ціна: {self.price}$"
 
+    def __repr__(self):
+        return f"Бренд атомобіля: {self.brand}, модель: {self.model}, колір: {self.color} - Ціна: {self.price}$"
+
 class CarDealership:
     def __init__(self, name: str="Херсон-авто", adr: str="м.Херсон"):
         self.name = name
@@ -41,4 +44,4 @@ print(car_dealership)
 print()
 print("Автомобілі:")
 for car in car_dealership.get_cars():
-    print(str(car))
+    print(car)
