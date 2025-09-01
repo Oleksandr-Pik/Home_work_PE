@@ -25,7 +25,7 @@ class CarDealership:
         return f"Автосалон (назва: {self.name}, адреса: {self.adr}, доступні авто для продажу: {str(self.cars)})"
 
     def add_car(self, car: Car):
-        self.cars.append(str(car))
+        self.cars.append(car)
 
     def get_cars(self):
         return self.cars
