@@ -1,34 +1,28 @@
-# Створіть клас Editor, який містить методи view_document та edit_document.
-# Нехай метод edit_document виводить на екран інформацію про те,
-# що редагування документів недоступне для безкоштовної версії.
-# Створіть підклас ProEditor, у якому цей метод буде перевизначено.
-# Введіть ліцензійний ключ із клавіатури
-# і, якщо він коректний, створіть екземпляр класу ProEditor, інакше Editor.
-# Викликайте методи перегляду та редагування документів.
+# Створіть клас, який описує автомобіль.
+# Які атрибути та методи мають бути повністю інкапсульовані?
+# Доступ до таких атрибутів та зміну даних реалізуйте через спеціальні методи (get, set).
 
-class Editor:
-    def __init__(self, name):
-        self.name = name
+class Car:
+    def __init__(self, brand: str, model: str, color: str):
+        self._brand = brand
+        self._model = model
+        self._color = color
+        self.__price = 0
 
-    def view_document(self):
-        return "Перегдяд документів дозволено"
+    def __str__(self):
+        return f"Бренд атомобіля: {self._brand}, модель: {self._model}, колір: {self._color} - Ціна: {self.get_price()}$"
 
-    def edit_document(self):
-        return "Редагування документів недоступне для безкоштовної версії"
+    def get_price(self):
+        return self.__price
 
-
-class ProEditor(Editor):
-    def __init__(self, licence_key: str = ""):
-        self.licence_key = licence_key
-
-    def edit_document(self):
-        return "Редагування документів дозволено"
+    def set_price(self):
+        self.__price = int(input("Вкажіть ціну: "))
 
 
-license_key = input("Введіть ліцензійний ключ: ")
 
-user_name = "Alex"
+car1 = Car("BMW", "X5", "білий")
 
-user = ProEditor(user_name) if license_key == "qwerty" else Editor(user_name)
+car1.set_price()
 
-print(user.edit_document())
+print(car1)
+

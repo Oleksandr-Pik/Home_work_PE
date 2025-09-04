@@ -1,34 +1,30 @@
-# Опишіть класи графічного об'єкта, прямокутника та об'єкта, який може обробляти натискання миші.
-# Опишіть клас кнопки. Створіть об'єкт кнопки та звичайного прямокутника.
-# Викличте метод натискання на кнопку.
+# Створіть 2 класи мови, наприклад, англійська та іспанська.
+# В обох класів має бути метод greeting().
+# Обидва створюють різні привітання.
+# Створіть два відповідні об'єкти з двох класів вище
+# та викличте дії цих двох об'єктів в одній функції (функція hello_friend).
 
-class Figure:
-    TYPE = "Графічний об'єкт"
+class Language:
+    def greeting(self):
+        print("Hello")
 
-    def get_info(self):
-        print(f"Це: {self.TYPE}")
+class English(Language):
+    def greeting(self):
+        print("Hello my friend")
 
+class Spanish(Language):
+    def greeting(self):
+        print("Hola mi amiga")
 
-class Rectangle(Figure):
-    TYPE = "Прямокутник"
+speak_en = English()
+speak_spa = Spanish()
 
+def hello_friend(lang: str):
+    if lang == "en":
+        speak_en.greeting()
+    elif lang == "spa":
+        speak_spa.greeting()
 
-class ClickedFigure:
-    def on_click(self):
-        print("Ви клікнули мишею")
+hello_friend("en")
+hello_friend("spa")
 
-
-class MyButton(ClickedFigure, Rectangle):
-    TYPE = "Кнопка"
-
-    def on_click(self):
-        super().on_click()
-        print("по об'єкту,")
-        super().get_info()
-
-
-rect = Rectangle()
-rect.get_info()
-print()
-btn = MyButton()
-btn.on_click()
