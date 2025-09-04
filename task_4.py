@@ -1,20 +1,3 @@
-# Опишіть два класи Base та його спадкоємця Child з методами method(),
-# який виводить на консоль фрази відповідно "Hello from Base" та "Hello from Child",
-# using classmethod (@classmethod) decorator.
-
-class Base:
-    @classmethod
-    def method(cls):
-        print("Hello from Base")
-
-class Child(Base):
-    @classmethod
-    def method(cls):
-        print("Hello from Child")
-
-
-obj1 = Base()
-obj2 = Child()
-
-obj1.method()
-obj2.method()
+# Опишіть свій клас винятку.
+# Напишіть функцію, яка викидатиме цей виняток, якщо користувач введе певне значення,
+# і перехопіть цей виняток під час виклику функції.
