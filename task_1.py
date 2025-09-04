@@ -1,32 +1,28 @@
-# Створіть клас, який описує книгу.
-# Він повинен містити інформацію про автора, назву, рік видання та жанр.
-# Створіть кілька різних книжок. Визначте для нього методи _repr_ та _str_.
+# Створіть клас, який описує автомобіль.
+# Які атрибути та методи мають бути повністю інкапсульовані?
+# Доступ до таких атрибутів та зміну даних реалізуйте через спеціальні методи (get, set).
 
-class Book:
-    def __init__(self, author: str, title: str, year_pub: int, genre: str):
-        self.author = author
-        self.title = title
-        self.year_pub = year_pub
-        self.genre = genre
+class Car:
+    def __init__(self, brand: str, model: str, color: str):
+        self._brand = brand
+        self._model = model
+        self._color = color
+        self.__price = 0
 
     def __str__(self):
-        return f"Book (назва: {self.title}, автор: {self.author}, рік виданн: {self.year_pub}, жанр: {self.genre})"
+        return f"Бренд атомобіля: {self._brand}, модель: {self._model}, колір: {self._color} - Ціна: {self.get_price()}$"
 
-    def __repr__(self):
-        return f"Book({repr(self.title)}, {repr(self.author)}, {repr(self.year_pub)}, {repr(self.genre)})"
+    def get_price(self):
+        return self.__price
+
+    def set_price(self):
+        self.__price = int(input("Вкажіть ціну: "))
 
 
-book1 = Book(author="Дж. Толкін", title="Гобіт", year_pub=1937, genre="фентезі")
-book2 = Book(author="Джейн Остін", title="Гордість і упередження", year_pub=1813, genre="роман")
-book3 = Book(author="Джордж Орвелл", title="1984", year_pub=1949, genre="антиутопія")
-book4 = Book("Т. Шевченко", "Кобзар", 1832, "збірка віршів")
 
-print(book1)
-print(book2)
-print(book3)
-print(book4)
-print()
-print(repr(book1))
-print(repr(book2))
-print(repr(book3))
-print(repr(book4))
+car1 = Car("BMW", "X5", "білий")
+
+car1.set_price()
+
+print(car1)
+
