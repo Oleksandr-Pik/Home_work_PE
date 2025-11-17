@@ -1,47 +1,55 @@
-# Створіть клас, який описує автомобіль.
-# Створіть клас автосалону, що містить в собі список автомобілів, доступних для продажу,
-# і функцію продажу заданого автомобіля.
+# Опишіть свій клас винятку.
+# Напишіть функцію, яка викидатиме цей виняток, якщо користувач введе певне значення,
+# і перехопіть цей виняток під час виклику функції.
 
-class Car:
-    def __init__(self,brand: str, model: str, color: str, price: int):
-        self.brand = brand
-        self.model = model
-        self.color = color
-        self.price = price
+class UserError(Exception):
+    pass
 
-    def __str__(self):
-        return f"Бренд атомобіля: {self.brand}, модель: {self.model}, колір: {self.color} - Ціна: {self.price}$"
 
-    def __repr__(self):
-        return f"Бренд атомобіля: {self.brand}, модель: {self.model}, колір: {self.color} - Ціна: {self.price}$"
+class UserNameError(UserError):
+    pass
 
-class CarDealership:
-    def __init__(self, name: str="Херсон-авто", adr: str="м.Херсон"):
+
+class UserSurnameError(UserError):
+    pass
+
+
+class UserBirthYearError(UserError):
+    pass
+
+
+class User:
+    def __init__(self, name: str, surname: str, birth_year: int):
+        if not name:
+            raise UserNameError("Ім'я не може бути порожнім.")
+        if not surname:
+            raise UserSurnameError("прізвище не може бути порожнім.")
+        if not name.isalpha() or not surname.isalpha():
+            raise UserNameError("Ім'я та прізвище повинні містити лише літери.")
+        if birth_year < 1900 or birth_year > 2025:
+            raise UserBirthYearError("Рік народження має бути в межах 1900–2025.")
+
         self.name = name
-        self.adr = adr
-        self.cars = []
+        self.surname = surname
+        self.year = birth_year
 
     def __str__(self):
-        return f"Автосалон (назва: {self.name}, адреса: {self.adr}, доступні авто для продажу: {str(self.cars)})"
+        return f"{self.name} {self.surname}, {self.year} року народження"
 
-    def add_car(self, car: Car):
-        self.cars.append(car)
+users = []
+n = int(input("Скільки кормстувачів ви хочете ввести? "))
 
-    def get_cars(self):
-        return self.cars
+for i in range(n):
+    print(f"\nВведення даних користувача №{i+1}")
+    try:
+        name = input("Ім'я: ").strip()
+        surname = input("Прізвище: ").strip()
+        birth_year = int(input("Рік народження: "))
+        user = User(name, surname, birth_year)
+        users.append(user)
+    except UserError as e:
+        print(f"Помилка: {e} Спробуйте ще раз.")
+        continue
 
-
-car1 = Car("BMW", "X5", "білий", 30000)
-car2 = Car("BMW", "X3", "чорний", 25000)
-car3 = Car("Audi", "Q7", "чорний", 50000)
-
-car_dealership = CarDealership()
-car_dealership.add_car(car1)
-car_dealership.add_car(car2)
-car_dealership.add_car(car3)
-
-print(car_dealership)
-print()
-print("Автомобілі:")
-for car in car_dealership.get_cars():
-    print(car)
+for user in users:
+    print(user)
